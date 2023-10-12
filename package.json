@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "fastify": "^4.23.2"
+  },
+  "devDependencies": {
+    "@sinclair/typebox": "^0.31.17",
+    "@types/node": "^20.8.4",
+    "typescript": "^5.2.2"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./dist",
+    "dev": "tsc && node ./dist"
+  }
+}

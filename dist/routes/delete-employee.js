@@ -1,0 +1,49 @@
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const employeeController = __importStar(require("../controller/employee.controller"));
+const employees_schema_1 = require("../routes/schemas/employees.schema");
+function deleteEmployee(fastify) {
+    return {
+        method: 'DELETE',
+        url: '/api/employees/:id',
+        schema: {
+            params: employees_schema_1.employeeBodySchema
+        },
+        handler: async (request, reply) => {
+            const params = request.params;
+            const employee = await employeeController.deleteEmployee(params.id);
+            reply.code(200).send({ success: true });
+            /*if(employees.length < params.id){
+                reply.code(400).send({ error: 'Invalid input' });
+            } else{
+                const employee = await employeeController.deleteEmployee(params.id);
+                reply.code(200).send({success:true});
+            }*/
+        }
+    };
+}
+exports.default = deleteEmployee;
+//# sourceMappingURL=delete-employee.js.map
